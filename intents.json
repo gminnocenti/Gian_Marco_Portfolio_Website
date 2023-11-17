@@ -1,0 +1,96 @@
+{
+    "intents": [
+        {
+            "tag": "greeting",
+            "patterns": ["Hi there", "How are you", "Is anyone there?", "Hey", "Hola", "Hello", "Good day","Hello"],
+            "responses": ["Hello", "Good to see you again", "Hi there, what do you want to know abut Gian Marco?"],
+            "context": [""]
+        },
+        {
+            "tag": "goodbye",
+            "patterns": ["Bye", "See you later", "Goodbye", "Nice chatting to you, bye", "Till next time"],
+            "responses": ["See you!", "Have a nice day", "Bye! Come back again soon."],
+            "context": [""]
+        },
+        {
+            "tag": "thanks",
+            "patterns": ["Thanks", "Thank you", "That's helpful", "Awesome, thanks", "Thanks for helping me"],
+            "responses": ["My pleasure", "You're welcome"],
+            "context": [""]
+        },
+        {
+            "tag": "bcs",
+            "patterns": ["What is Gian Marco studying?"],
+            "responses": ["Gian Marco is studying a Bachelor in Science in Data Science and Mathematics at Tecnologico de Monterrey"],
+            "context": [""]
+        },
+        {
+            "tag": "gpa",
+            "patterns": ["What is Gian Marco's gpa or school average?", "what is gian marco's average "],
+            "responses": ["Gian Marco has gpa of 3.7 and a average of 92.1","Gian Marco has a average of 92.1"],
+            "context": [""]
+        },
+        {
+            "tag": "internships",
+            "patterns": ["list internships", "list gian marcos internships", "What is Gian Marco's work experience?"],
+            "responses": [" Applaudo Studios Machine Learning Intern , Grupo Roble  Finance Trainee , AirPak Western Union  Data Science Intern"],
+            "context": [""]
+        },
+        {
+            "tag": "Applaudo",
+            "patterns": ["Give me a description of Gian Marco's role in Applaudo", "Describe his role in Applaudo","What did gian marco did in applaudo", "major role in applaudo"],
+            "responses": [" Gian Marco worked from January 2023 to June 2023 and Created Machine Learning Clustering , Classification and Recommendation Models using XGBOOST, Kmeans and Sklearn Libraries. Also, he contributed by deploying and maintaining Machine Learning Models using the Kedro framework.Finally he Automated data Pipelines for Machine Learning Applications."],
+            "context": [""]
+        },
+
+        {
+            "tag": "Airpak",
+            "patterns": ["Give me a description of Gian Marco's role in Airpak", "Describe his role in Airpak","What did gian marco did in Airpak", "major role in Airpak"],
+            "responses": [" Gian Marco worked from june 2022 to july 2022 and created a algorithm that tracked consumer behavior in their different branches and created an algorithm that located lost costumers of their three major branches."],
+            "context": [""]
+        },
+        {
+            "tag": "skills",
+            "patterns": ["Gian Marco skills", "what are gian marcos major skills","programming language", "what are gian marcos' computational skills"],
+            "responses": ["Gian Marco's favorite programming language is Python. He has experience working on Recurrent Neural Networks(RNN),Convolutional Neural Networks(CNN) on tensorflow, for image classication and time series. Also he is proficcient in Machine Learning Models with the sklearn, and xgboost library.","Proficient in Python, MATLAB, R, Kedro Framework, Excel. Familiar with C++,C#, Django Framework."],
+            "context": [""]
+        },
+        {
+            "tag": "courses",
+            "patterns": ["relevant courseworks", "list of important coursework"],
+            "responses": [" Some of Gian Marco's Relevant courses are Neural Networks, Stochastic Programming, Linear Programming, Linear Algebra, Calculus 3, Genetic Algorithms."],
+            "context": [""]
+        },
+        {
+            "tag": "passions",
+            "patterns": ["what are gian marco's passions or interests", "interests","passions"],
+            "responses": [" Gian Marco has a passion for fishing, golf and excersice. He also has a passion for building and deploying Neural Networks and Machine Learning Models that create value for those around him. In his free time he likes to watch youtube tutorials about the newest technological trends regarding Artifical Intelligence."],
+            "context": [""]
+        },
+        {
+            "tag": "information",
+            "patterns": ["How can i get in contact with Gian Marco?", "Contact Information","Social Networks", "Linkedin","email"],
+            "responses": ["To get in contact with Gian Marco you can reach out via email to gminnocenti123@gmail.com, or follow him in his linkedin account with the following link: https://www.linkedin.com/in/gian-marco-innocenti-castellanos-672778235/ , or following him on github to keep up with his newest personal projects : https://github.com/gminnocenti "],
+            "context": [""]
+        },
+
+        {
+            "tag": "about",
+            "patterns": ["Tell me about yourself", "Who are you?", "What can you do?","How where you built?"],
+            "responses": ["I am a chatbot designed to assist and answer your questions about Gian Marco.", "I'm here to help and provide information about Gian Marco.","I was built with a Multi Layer Perceptron Architecture with the Tensorflow Library. I was trained with json file that contains a series of patterns or questions with their respective answers. All of the information is focused so that you get a better understanding of how Gian Marco can have a positive impact on your organization"],
+            "context": [""]
+        },
+        {
+            "tag": "help",
+            "patterns": ["Help me", "I need assistance", "Can you help?", "What can you help with?"],
+            "responses": ["Sure, I'd be happy to help. What do you need assistance with?", "I'm here to assist you. Please let me know what you require help with."],
+            "context": [""]
+        },
+        {
+            "tag": "name",
+            "patterns": ["What's your name?", "Do you have a name?", "Name yourself"],
+            "responses": ["I don't have a personal name. You can call me Chatbot.", "I'm just a chatbot, so I don't have a personal name."],
+            "context": [""]
+        }
+    ]
+}
