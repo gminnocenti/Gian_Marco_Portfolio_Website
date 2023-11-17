@@ -11,7 +11,8 @@ import streamlit.components.v1 as components
 from multiapp import MultiApp
 from Financial_Statements import FinVista
 
-
+nltk.download('punkt')
+nltk.download('wordnet')
 
 lemmatizer = WordNetLemmatizer()
 intents = json.loads(open('intents.json').read())
