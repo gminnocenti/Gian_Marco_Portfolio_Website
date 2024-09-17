@@ -269,7 +269,7 @@ def get_RatiosofMultipleCompanies(listoftickers):
         current_Assets, non_current_Assets,total_Assets,current_Liabilities,non_current_Liabilities,total_Liabilities,total_ShareHolderEquity=extract_balance_sheet(listoftickers[i])
         total_Revenue=get_TotalRevenue(listoftickers[i])
         financial=get_Financial(listoftickers[i])
-        cashflow=get_CashFLow(listoftickers[i])
+        cashflow=get_CashFlow(listoftickers[i])
         
         #get ratios
         current_Ratio=get_CurrentRatio(current_Assets,current_Liabilities)
@@ -394,7 +394,7 @@ def get_MultipleLiquidityRatios(listoftickers):
     listofdfs=[]
     for i in range(len(listoftickers)):
         current_Assets, non_current_Assets,total_Assets,current_Liabilities,non_current_Liabilities,total_Liabilities,total_ShareHolderEquity=extract_balance_sheet(listoftickers[i])
-        cashflow=get_CashFLow(listoftickers[i])
+        cashflow=get_CashFlow(listoftickers[i])
         current_Ratio=get_CurrentRatio(current_Assets,current_Liabilities)
         current_Ratio = current_Ratio.sort_index()
         current_Ratio['Current Ratio YoY Change']=round(current_Ratio['Current Ratio'].pct_change() * 100,2)
@@ -424,7 +424,7 @@ def get_RankingTableLiquidity(liquidity):
 def get_MultipleEfficiencyRatios(listoftickers):
     listofdfs=[]
     for i in range(len(listoftickers)):
-        cashflow=get_CashFLow(listoftickers[i])
+        cashflow=get_CashFlow(listoftickers[i])
         financial=get_Financial(listoftickers[i])
 
         cash_flow_to_net_income_Ratio=get_CashFlowtoNetIncomeRatio(cashflow,financial)
@@ -542,7 +542,7 @@ def generate_tabs(selected_ticker_symbols):
             st.download_button(label="Download Cash Flow Statement as CSV", data=cash_flow_statement_csv, file_name='CashFlowStatement.csv', mime='text/csv')
 
 
-def generate_ratio_tabs(selected_ticker_symbols):
+"""def generate_ratio_tabs(selected_ticker_symbols):
     st.header("Important Ratio Information")
     Profitability_Ratios,Liquidity_Ratios ,Efficiency_Ratios,Whole_Ratio = st.tabs(["Profitability Ratios","Liquidity Ratios" ,"Efficiency Ratios","Complete Ratio Sheet"])
 
@@ -689,3 +689,4 @@ def generate_ratio_tabs(selected_ticker_symbols):
 
         st.divider()
    
+"""
