@@ -543,7 +543,7 @@ def generate_tabs(selected_ticker_symbols):
 
 
 
-
+"""
 def generate_ratio_tabs(selected_ticker_symbols):
     st.header("Important Ratio Information")
     Profitability_Ratios,Liquidity_Ratios ,Efficiency_Ratios,Whole_Ratio = st.tabs(["Profitability Ratios","Liquidity Ratios" ,"Efficiency Ratios","Complete Ratio Sheet"])
@@ -690,3 +690,4 @@ def generate_ratio_tabs(selected_ticker_symbols):
         )
 
         st.divider()
+        """
