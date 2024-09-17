@@ -164,7 +164,7 @@ st.subheader('Select one Project: ')
 app = MultiApp()
 
 # Add all your application here
-#app.add_app("FinVista Application for Financial Analysis using Yahoo Finance API", FinVista)
+app.add_app("FinVista Application for Financial Analysis using Yahoo Finance API", FinVista)
 # The main app
 app.run()
 
