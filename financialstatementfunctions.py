@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 
 ######################################################################## Functions to extract financials
-@st.cache_data
+
 def get_Assets(balancesheet):
     # Extract current assets
     current_Assets_columns = ['Cash And Cash Equivalents', 'Other Short Term Investments', 'Accounts Receivable', 'Inventory', 'Other Current Assets', 'Current Assets']
