@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-from financialstatementfunctions import get_MultipleBalanceSheet,plot_multiple_columns_lines,get_WholeRatio,convert_df,get_MultipleFinancial,get_MultipleCashFlow,generate_tabs,get_MultipleProfitabilityRatios,get_RankingTableProfitability,generate_ratio_tabs,get_MultipleLiquidityRatios,get_RankingTableLiquidity,get_MultipleEfficiencyRatios,get_RankingTableEfficiency
+from financialstatementfunctions import generate_tabs,generate_ratio_tabs
 
 def FinVista():
     st.title("FinVista Analyzer")
