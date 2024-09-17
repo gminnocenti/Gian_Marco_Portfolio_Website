@@ -31,6 +31,6 @@ def FinVista():
 
     st.divider()
     ########################################## Ratio Section and Further Analysis
-    generate_ratio_tabs(selected_ticker_symbols)
+    #generate_ratio_tabs(selected_ticker_symbols)
 
 
