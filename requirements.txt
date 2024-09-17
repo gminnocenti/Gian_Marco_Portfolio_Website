@@ -68,7 +68,7 @@ rsa==4.9
 six==1.16.0
 smmap==5.0.1
 soupsieve==2.5
-streamlit==1.4.0
+streamlit==1.28.9
 tenacity==8.2.3
 tensorboard==2.15.1
 tensorboard-data-server==0.7.2
