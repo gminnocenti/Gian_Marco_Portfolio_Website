@@ -16,11 +16,7 @@ def FinVista():
         "Apple": "AAPL",
         "Google": "GOOG",
         "Nvidia": "NVDA",
-        "Microsoft": "MSFT",
-        "Intel": "INTC",
-        "Pfizer": "PFE",
-        "IBM": "IBM",
-        "General Electric": "GE"
+        "Microsoft": "MSFT"
     }
 
     ## Financials sections
@@ -31,10 +27,10 @@ def FinVista():
     # Convert display values to ticker symbols
     selected_ticker_symbols = [company_tickers[company] for company in selected_tickers]
 
-    generate_tabs(selected_ticker_symbols)
+    #generate_tabs(selected_ticker_symbols)
 
     st.divider()
     ########################################## Ratio Section and Further Analysis
-    generate_ratio_tabs(selected_ticker_symbols)
+    #generate_ratio_tabs(selected_ticker_symbols)
 
 
