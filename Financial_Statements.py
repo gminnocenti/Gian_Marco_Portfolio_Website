@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-from financialstatementfunctions import generate_tabs,generate_ratio_tabs
+from financialstatementfunctions import generate_tabs
 
 def FinVista():
     st.title("FinVista Analyzer")
@@ -29,8 +29,8 @@ def FinVista():
 
     generate_tabs(selected_ticker_symbols)
 
-    st.divider()
+    #st.divider()
     ########################################## Ratio Section and Further Analysis
-    generate_ratio_tabs(selected_ticker_symbols)
+    #generate_ratio_tabs(selected_ticker_symbols)
 
 
