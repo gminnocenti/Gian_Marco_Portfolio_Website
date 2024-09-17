@@ -4,144 +4,168 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import plotly.express as px
 
-
-
 ######################################################################## Functions to extract financials
+@st.cache_data
 def get_Assets(balancesheet):
+    # Extract current assets
+    current_Assets_columns = ['Cash And Cash Equivalents', 'Other Short Term Investments', 'Accounts Receivable', 'Inventory', 'Other Current Assets', 'Current Assets']
+    current_Assets = balancesheet[current_Assets_columns]
+    
+    # Extract non-current assets
+    non_current_Assets_columns = ['Net PPE', 'Investments And Advances', 'Other Non Current Assets', 'Total Non Current Assets']
+    non_current_assets = balancesheet[non_current_Assets_columns]
+    
+    # Extract total assets
+    total_Assets_columns = ['Total Assets']
+    total_Assets = balancesheet[total_Assets_columns]
+    
+    return current_Assets, non_current_assets, total_Assets
 
-    #extract current assets
-    current_Assets_columns=['Cash And Cash Equivalents','Other Short Term Investments','Accounts Receivable','Inventory','Other Current Assets','Current Assets']
-    current_Assets=balancesheet[current_Assets_columns]
-    #extract noncurrent assets
-    non_current_Assets_columns=['Net PPE','Investments And Advances', 'Other Non Current Assets','Total Non Current Assets']
-    non_current_assets=balancesheet[non_current_Assets_columns]
-    #extract total assets
-    total_Assets_columns=['Total Assets']
-    total_Assets=balancesheet[total_Assets_columns]
-    return current_Assets, non_current_assets,total_Assets
-
+@st.cache_data
 def get_Liabilities(balancesheet):
-    #extract current  liabilies
-    current_liabilities_columns=[  'Other Current Liabilities',
-       'Current Deferred Liabilities',
-       'Current Debt And Capital Lease Obligation',
-       
-       'Payables And Accrued Expenses','Current Liabilities'
-       ]
-    current_Liabilities=balancesheet[current_liabilities_columns]
-    #extract noncurrent liabilities
-    non_current_Liabilities_columns=[ 'Other Non Current Liabilities','Long Term Debt And Capital Lease Obligation','Total Non Current Liabilities Net Minority Interest']
-    non_current_Liabilities=balancesheet[non_current_Liabilities_columns]
-    # total liabilities
-    total_Liabilities_columns=['Total Liabilities Net Minority Interest']
-    total_Liabilities=balancesheet[total_Liabilities_columns]
+    # Extract current liabilities
+    current_liabilities_columns = ['Other Current Liabilities', 'Current Deferred Liabilities', 'Current Debt And Capital Lease Obligation', 'Payables And Accrued Expenses', 'Current Liabilities']
+    current_Liabilities = balancesheet[current_liabilities_columns]
+    
+    # Extract non-current liabilities
+    non_current_Liabilities_columns = ['Other Non Current Liabilities', 'Long Term Debt And Capital Lease Obligation', 'Total Non Current Liabilities Net Minority Interest']
+    non_current_Liabilities = balancesheet[non_current_Liabilities_columns]
+    
+    # Total liabilities
+    total_Liabilities_columns = ['Total Liabilities Net Minority Interest']
+    total_Liabilities = balancesheet[total_Liabilities_columns]
+    
+    return current_Liabilities, non_current_Liabilities, total_Liabilities
 
-    return current_Liabilities, non_current_Liabilities,total_Liabilities
-
+@st.cache_data
 def get_Equity(balancesheet):
-    #extract equity
-    equity_columns=['Total Equity Gross Minority Interest']
-    equity=balancesheet[equity_columns]
+    # Extract equity
+    equity_columns = ['Total Equity Gross Minority Interest']
+    equity = balancesheet[equity_columns]
     return equity
 
-
+@st.cache_data
 def extract_balance_sheet(ticker):
-    stock=yf.Ticker(ticker)
-# extract balance sheet for the company
-    balancesheet=stock.balancesheet.T
-    #extract Assets dataframes
-    current_Assets, non_current_Assets,total_Assets=get_Assets(balancesheet)
-    #extract Liabilities dataframes
-    current_Liabilities,non_current_Liabilities,total_Liabilities=get_Liabilities(balancesheet)
-    # extract equity dataframe
-    total_ShareHolderEquity=get_Equity(balancesheet)
-    return current_Assets, non_current_Assets,total_Assets,current_Liabilities,non_current_Liabilities,total_Liabilities,total_ShareHolderEquity
-
-
-
-
-
-def get_TotalRevenue(ticker):
-    financial=yf.Ticker(ticker)
-    financial=financial.financials.T
-    total_Revenue = pd.DataFrame({
-    'Total Revenue': financial['Total Revenue']
+    stock = yf.Ticker(ticker)
     
-})
+    # Error handling for missing data
+    try:
+        balancesheet = stock.balancesheet.T
+    except Exception as e:
+        st.warning(f"Failed to extract balance sheet for {ticker}: {e}")
+        return None
+    
+    current_Assets, non_current_Assets, total_Assets = get_Assets(balancesheet)
+    current_Liabilities, non_current_Liabilities, total_Liabilities = get_Liabilities(balancesheet)
+    total_ShareHolderEquity = get_Equity(balancesheet)
+    
+    return current_Assets, non_current_Assets, total_Assets, current_Liabilities, non_current_Liabilities, total_Liabilities, total_ShareHolderEquity
+
+@st.cache_data
+def get_TotalRevenue(ticker):
+    financial = yf.Ticker(ticker)
+    
+    # Error handling for missing data
+    try:
+        financial = financial.financials.T
+        total_Revenue = pd.DataFrame({
+            'Total Revenue': financial['Total Revenue']
+        })
+    except KeyError:
+        st.warning(f"Total Revenue data not available for {ticker}")
+        total_Revenue = pd.DataFrame({
+            'Total Revenue': [None]
+        })
+    
     return total_Revenue
 
-
+@st.cache_data
 def get_Financial(ticker):
-       stock=yf.Ticker(ticker)
-       # extract balance sheet for the company
-       financial=stock.financials.T
-       financialcolumns=['Total Revenue','Gross Profit', 'Cost Of Revenue','Operating Income', 'Operating Expense','Other Non Operating Income Expenses',
-       'Tax Provision', 'Pretax Income','Net Income','Diluted NI Availto Com Stockholders','Net Interest Income', 'Interest Expense', 'Interest Income',
-       'Normalized Income',
-       'Net Income From Continuing And Discontinued Operation',
-       'Total Expenses', 
-       'Diluted Average Shares', 'Basic Average Shares', 'Diluted EPS',
-       'Basic EPS',
-       'Other Income Expense','Tax Effect Of Unusual Items', 'Tax Rate For Calcs',
-       'Normalized EBITDA',
-       'Net Income From Continuing Operation Net Minority Interest',
-       'Reconciled Depreciation', 'Reconciled Cost Of Revenue', 'EBITDA',
-       'EBIT',]
-       financial=financial[financialcolumns]
-       return financial
+    stock = yf.Ticker(ticker)
+    
+    # Error handling for missing data
+    try:
+        financial = stock.financials.T
+        financialcolumns = ['Total Revenue', 'Gross Profit', 'Cost Of Revenue', 'Operating Income', 'Operating Expense', 'Net Income']
+        financial = financial[financialcolumns]
+    except Exception as e:
+        st.warning(f"Failed to extract financial data for {ticker}: {e}")
+        return None
+    
+    return financial
 
-
+@st.cache_data
 def get_MultipleFinancial(listoftickers):
-    df_list=[]
-    for i in range(len(listoftickers)):
-        df=get_Financial(listoftickers[i])
-        df['Company'] = [listoftickers[i]] * len(df)
-        df_list.append(df) 
-    multiple_Financial = pd.concat(df_list, ignore_index=False)
-    return multiple_Financial     
+    df_list = []
+    for ticker in listoftickers:
+        df = get_Financial(ticker)
+        if df is not None:
+            df['Company'] = [ticker] * len(df)
+            df_list.append(df)
+    
+    if df_list:
+        multiple_Financial = pd.concat(df_list, ignore_index=False)
+        return multiple_Financial
+    else:
+        st.warning("No financial data available.")
+        return None
 
+@st.cache_data
+def get_CashFlow(ticker):
+    stock = yf.Ticker(ticker)
+    
+    # Error handling for missing data
+    try:
+        cashflow = stock.cashflow.T
+        cashflowcolumns = ['Free Cash Flow', 'Operating Cash Flow']
+        cashflow = cashflow[cashflowcolumns]
+    except Exception as e:
+        st.warning(f"Failed to extract cash flow for {ticker}: {e}")
+        return None
+    
+    return cashflow
 
-def get_CashFLow(ticker):
-       stock=yf.Ticker(ticker)
-       # extract balance sheet for the company
-       cashflow=stock.cashflow.T
-       cashflowcolumns=['Free Cash Flow', 'Repurchase Of Capital Stock', 'Repayment Of Debt',
-              'Issuance Of Debt', 'Capital Expenditure','End Cash Position','Financing Cash Flow','Investing Cash Flow','Operating Cash Flow']
-       cashflow=cashflow[cashflowcolumns]
-       return cashflow
-
-
+@st.cache_data
 def get_MultipleCashFlow(listoftickers):
-    df_list=[]
-    for i in range(len(listoftickers)):
-        df=get_CashFLow(listoftickers[i])
-        df['Company'] = [listoftickers[i]] * len(df)
-        df_list.append(df)
+    df_list = []
+    for ticker in listoftickers:
+        df = get_CashFlow(ticker)
+        if df is not None:
+            df['Company'] = [ticker] * len(df)
+            df_list.append(df)
     
-    multiple_CahsFlow = pd.concat(df_list, ignore_index=False)
+    if df_list:
+        multiple_CashFlow = pd.concat(df_list, ignore_index=False)
+        return multiple_CashFlow
+    else:
+        st.warning("No cash flow data available.")
+        return None
 
-    return multiple_CahsFlow      
-
-
+@st.cache_data
 def get_CompleteBalancesheet(ticker):
-        
-        current_Assets, non_current_Assets,total_Assets,current_Liabilities,non_current_Liabilities,total_Liabilities,total_ShareHolderEquity=extract_balance_sheet(ticker)
-        result_df = pd.concat([current_Assets, non_current_Assets, total_Assets,
-                          current_Liabilities, non_current_Liabilities, total_Liabilities,
-                          total_ShareHolderEquity], axis=1)
-        return result_df
-
-
-def get_MultipleBalanceSheet(listoftickers):
-    df_list=[]
-    for i in range(len(listoftickers)):
-        df=get_CompleteBalancesheet(listoftickers[i])
-        df['Company'] = [listoftickers[i]] * len(df)
-        df_list.append(df)
+    current_Assets, non_current_Assets, total_Assets, current_Liabilities, non_current_Liabilities, total_Liabilities, total_ShareHolderEquity = extract_balance_sheet(ticker)
     
-    multiple_BalanceSheets = pd.concat(df_list, ignore_index=False)
+    if any(v is None for v in [current_Assets, total_Assets, total_Liabilities]):
+        return None
+    
+    result_df = pd.concat([current_Assets, non_current_Assets, total_Assets, current_Liabilities, non_current_Liabilities, total_Liabilities, total_ShareHolderEquity], axis=1)
+    return result_df
 
-    return multiple_BalanceSheets      
+@st.cache_data
+def get_MultipleBalanceSheet(listoftickers):
+    df_list = []
+    for ticker in listoftickers:
+        df = get_CompleteBalancesheet(ticker)
+        if df is not None:
+            df['Company'] = [ticker] * len(df)
+            df_list.append(df)
+    
+    if df_list:
+        multiple_BalanceSheets = pd.concat(df_list, ignore_index=False)
+        return multiple_BalanceSheets
+    else:
+        st.warning("No balance sheet data available.")
+        return None      
 
 
 
@@ -477,67 +501,45 @@ def convert_df(df):
 
 
 
-def generate_tabs(selected_ticker_symbols):
+@st.cache_data
+def convert_df(df):
+    return df.to_csv().encode('utf-8')
 
+def generate_tabs(selected_ticker_symbols):
     balance_sheet_tab, financials_tab, cash_flow_tab = st.tabs(["Balance Sheet", "Financials", "Cash Flow"])
 
     with balance_sheet_tab:
-    
-        # Balance Sheet Subsection
         st.subheader("Balance Sheet Information")
-        Balance_Sheet=get_MultipleBalanceSheet(selected_ticker_symbols)
-        # generate graph of basic information in a balance sheet
-        selected_columns = st.multiselect('Please select which Attributes of the Balance Sheet you wish to plot:', Balance_Sheet.columns.tolist(), default=['Total Assets','Total Liabilities Net Minority Interest'])
-        # Plot line chart
-        if selected_columns:
-            plot_multiple_columns_lines(Balance_Sheet,selected_columns)
+        Balance_Sheet = get_MultipleBalanceSheet(selected_ticker_symbols)
+        if Balance_Sheet is not None:
+            selected_columns = st.multiselect('Please select which Attributes of the Balance Sheet you wish to plot:', Balance_Sheet.columns.tolist(), default=['Total Assets','Total Liabilities Net Minority Interest'])
+            if selected_columns:
+                plot_multiple_columns_lines(Balance_Sheet, selected_columns)
 
-        balance_sheet_csv = convert_df(Balance_Sheet)
-
-        st.download_button(
-            label="Download Balance Sheet as CSV",
-            data=balance_sheet_csv,
-            file_name='BalanceSheet.csv',
-            mime='text/csv',
-        )
+            balance_sheet_csv = convert_df(Balance_Sheet)
+            st.download_button(label="Download Balance Sheet as CSV", data=balance_sheet_csv, file_name='BalanceSheet.csv', mime='text/csv')
 
     with financials_tab:
-        # Balance Sheet Subsection
         st.subheader("Financial Statement Information")
-        financial_statement=get_MultipleFinancial(selected_ticker_symbols)
-        # generate graph of basic information in a balance sheet
-        selected_columns_financial = st.multiselect('Please select which Attributes of the Financial Statement you wish to plot:', financial_statement.columns.tolist(), default=['Net Income','Cost Of Revenue'])
-        # Plot line chart
-        if selected_columns_financial:
-            plot_multiple_columns_lines(financial_statement,selected_columns_financial)
+        financial_statement = get_MultipleFinancial(selected_ticker_symbols)
+        if financial_statement is not None:
+            selected_columns_financial = st.multiselect('Please select which Attributes of the Financial Statement you wish to plot:', financial_statement.columns.tolist(), default=['Net Income','Cost Of Revenue'])
+            if selected_columns_financial:
+                plot_multiple_columns_lines(financial_statement, selected_columns_financial)
 
-        financial_statement_csv = convert_df(financial_statement)
-
-        st.download_button(
-            label="Download Financial Statement as CSV",
-            data=financial_statement_csv,
-            file_name='FinancialStatement.csv',
-            mime='text/csv',
-        )
+            financial_statement_csv = convert_df(financial_statement)
+            st.download_button(label="Download Financial Statement as CSV", data=financial_statement_csv, file_name='FinancialStatement.csv', mime='text/csv')
 
     with cash_flow_tab:
-            # Balance Sheet Subsection
         st.subheader("Cash Flow Statement Information")
-        cash_flow_statement=get_MultipleCashFlow(selected_ticker_symbols)
-        # generate graph of basic information in a balance sheet
-        selected_columns_cash_flow = st.multiselect('Please select which Attributes of the Cash Flow Statement you wish to plot:', cash_flow_statement.columns.tolist(), default=['Free Cash Flow','Operating Cash Flow'])
-        # Plot line chart
-        if selected_columns_cash_flow:
-            plot_multiple_columns_lines(cash_flow_statement,selected_columns_cash_flow)
+        cash_flow_statement = get_MultipleCashFlow(selected_ticker_symbols)
+        if cash_flow_statement is not None:
+            selected_columns_cash_flow = st.multiselect('Please select which Attributes of the Cash Flow Statement you wish to plot:', cash_flow_statement.columns.tolist(), default=['Free Cash Flow', 'Operating Cash Flow'])
+            if selected_columns_cash_flow:
+                plot_multiple_columns_lines(cash_flow_statement, selected_columns_cash_flow)
 
-        cash_flow_statement_csv = convert_df(cash_flow_statement)
-
-        st.download_button(
-            label="Download Cash FLow Statement as CSV",
-            data=cash_flow_statement_csv,
-            file_name='CashFlowStatement.csv',
-            mime='text/csv',
-        )
+            cash_flow_statement_csv = convert_df(cash_flow_statement)
+            st.download_button(label="Download Cash Flow Statement as CSV", data=cash_flow_statement_csv, file_name='CashFlowStatement.csv', mime='text/csv')
 
 
 
