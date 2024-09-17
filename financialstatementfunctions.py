@@ -542,8 +542,6 @@ def generate_tabs(selected_ticker_symbols):
             st.download_button(label="Download Cash Flow Statement as CSV", data=cash_flow_statement_csv, file_name='CashFlowStatement.csv', mime='text/csv')
 
 
-
-"""
 def generate_ratio_tabs(selected_ticker_symbols):
     st.header("Important Ratio Information")
     Profitability_Ratios,Liquidity_Ratios ,Efficiency_Ratios,Whole_Ratio = st.tabs(["Profitability Ratios","Liquidity Ratios" ,"Efficiency Ratios","Complete Ratio Sheet"])
@@ -690,4 +688,4 @@ def generate_ratio_tabs(selected_ticker_symbols):
         )
 
         st.divider()
-        """
+   
