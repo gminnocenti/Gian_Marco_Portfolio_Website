@@ -1,0 +1,228 @@
+Tag: greeting
+Patterns:
+  - Hi there
+  - How are you
+  - Is anyone there?
+  - Hey
+  - Hola
+  - Hello
+  - Good day
+  - Hello
+Responses:
+  - Hello
+  - Good to see you again
+  - Hi there, what do you want to know abut Gian Marco?
+Context:
+  - 
+
+Tag: goodbye
+Patterns:
+  - Bye
+  - See you later
+  - Goodbye
+  - Nice chatting to you, bye
+  - Till next time
+Responses:
+  - See you!
+  - Have a nice day
+  - Bye! Come back again soon.
+Context:
+  - 
+
+Tag: thanks
+Patterns:
+  - Thanks
+  - Thank you
+  - That's helpful
+  - Awesome, thanks
+  - Thanks for helping me
+Responses:
+  - My pleasure
+  - You're welcome
+Context:
+  - 
+
+Tag: bcs
+Patterns:
+  - What is Gian Marco studying?
+Responses:
+  - Gian Marco is studying a Bachelor in Science in Data Science and Mathematics at Tecnologico de Monterrey he also studied one semester at UC Berkeley.
+Context:
+  - 
+
+Tag: gpa
+Patterns:
+  - What is Gian Marco's gpa or school average?
+  - what is gian marco's average 
+Responses:
+  - Gian Marco has gpa of 3.7 and a average of 92.1
+  - Gian Marco has a average of 92.1
+Context:
+  - 
+
+Tag: internships
+Patterns:
+  - list internships
+  - list gian marcos internships
+  - What is Gian Marco's work experience?
+Responses:
+  -  MIO3 Front End Engineer, Applaudo Studios Machine Learning Intern , Grupo Roble  Finance Trainee , AirPak Western Union  Data Science Intern
+Context:
+  - 
+
+Tag: Applaudo
+Patterns:
+  - Give me a description of Gian Marco's role in Applaudo
+  - Describe his role in Applaudo
+  - What did gian marco did in applaudo
+  - major role in applaudo
+Responses:
+  -  Gian Marco worked from January 2023 to June 2023 and Created Machine Learning Clustering , Classification and Recommendation Models using XGBOOST, Kmeans and Sklearn Libraries. Also, he contributed by deploying and maintaining Machine Learning Models using the Kedro framework.Finally he Automated data Pipelines for Machine Learning Applications.
+Context:
+  - 
+
+Tag: MIO3
+Patterns:
+  - Give me a description of Gian Marco's role in MIO3
+  - Describe his role in MIO3
+  - What did gian marco did in MIO3
+  - major role in MIO3
+Responses:
+  -  Gian Marco worked from June 2024 to August 2024 and developed a web application for a block chain company.
+Context:
+  - 
+
+Tag: Airpak
+Patterns:
+  - Give me a description of Gian Marco's role in Airpak
+  - Describe his role in Airpak
+  - What did gian marco did in Airpak
+  - major role in Airpak
+Responses:
+  -  Gian Marco worked from june 2022 to july 2022 and created a algorithm that tracked consumer behavior in their different branches and created an algorithm that located lost costumers of their three major branches.
+Context:
+  - 
+
+Tag: skills
+Patterns:
+  - Gian Marco skills
+  - what are gian marcos major skills
+  - programming language
+  - what are gian marcos' computational skills
+Responses:
+  - Gian Marco's favorite programming language is Python. He has experience working on Recurrent Neural Networks(RNN),Convolutional Neural Networks(CNN) on tensorflow, for image classication and time series. Also he is proficcient in Machine Learning Models with the sklearn, and xgboost library.
+  - Proficient in Python, MATLAB, R, Kedro Framework, Excel. Familiar with C++,C#, Django Framework.
+Context:
+  - 
+
+Tag: courses
+Patterns:
+  - relevant courseworks
+  - list of important coursework
+Responses:
+  -  Some of Gian Marco's Relevant courses are Neural Networks, Stochastic Programming, Linear Programming, Linear Algebra, Calculus 3, Genetic Algorithms.
+Context:
+  - 
+
+Tag: passions
+Patterns:
+  - what are gian marco's passions or interests
+  - interests
+  - passions
+Responses:
+  -  Gian Marco has a passion for fishing, golf and excersice. He also has a passion for building and deploying Neural Networks and Machine Learning Models that create value for those around him. In his free time he likes to watch youtube tutorials about the newest technological trends regarding Artifical Intelligence.
+Context:
+  - 
+
+Tag: information
+Patterns:
+  - How can i get in contact with Gian Marco?
+  - Contact Information
+  - Social Networks
+  - Linkedin
+  - email
+Responses:
+  - To get in contact with Gian Marco you can reach out via email to gminnocenti123@gmail.com, or follow him in his linkedin account with the following link: https://www.linkedin.com/in/gian-marco-innocenti-castellanos-672778235/ , or following him on github to keep up with his newest personal projects : https://github.com/gminnocenti 
+Context:
+  - 
+
+Tag: tools
+Patterns:
+  - What tools does Gian Marco use?
+  - Favorite libraries or frameworks?
+  - What does Gian Marco use for data processing?
+  - What does Gian Marco use for data visualization?
+  - What deep learning frameworks does Gian Marco use?
+  - What data engineering tools does he prefer?
+Responses:
+  - Gian Marco enjoys working with Pandas, Matplotlib, and Streamlit for data processing and visualization. 
+  - For data engineering, he prefers using PySpark to handle large-scale datasets efficiently. 
+  - When it comes to deep learning, he uses both PyTorch and TensorFlow to develop neural networks and machine learning models.
+  - His go-to stack includes Pandas and Matplotlib for analytics, Streamlit for interactive visualizations, PySpark for distributed data processing, and PyTorch/TensorFlow for deep learning.
+Context:
+  - 
+
+Tag: tv_shows
+Patterns:
+  - What are Gian Marco's favorite TV shows?
+  - What TV series does Gian Marco like?
+  - Favorite anime or series?
+  - What does Gian Marco watch?
+  - Any recommendations for TV shows?
+Responses:
+  - Gian Marco enjoys watching **Attack on Titan**, **Demon Slayer**, and **Game of Thrones**.
+  - His favorite TV shows include **Attack on Titan** and **Demon Slayer** for their incredible storytelling and animation, as well as **Game of Thrones** for its deep lore and epic battles.
+  - If you're into action-packed anime, Gian Marco recommends **Attack on Titan** and **Demon Slayer**. If you prefer fantasy and political intrigue, **Game of Thrones** is a great choice.
+Context:
+  - 
+
+
+Tag: about
+Patterns:
+  - Tell me about yourself
+  - Who are you?
+  - What can you do?
+  - How where you built?
+Responses:
+  - I am a chatbot designed to assist and answer your questions about Gian Marco.
+  - I'm here to help and provide information about Gian Marco.
+  - I was built with using the Deep Seek open source model.
+Context:
+  - 
+
+Tag: help
+Patterns:
+  - Help me
+  - I need assistance
+  - Can you help?
+  - What can you help with?
+Responses:
+  - Sure, I'd be happy to help. What do you need assistance with?
+  - I'm here to assist you. Please let me know what you require help with.
+Context:
+  - 
+
+Tag: name
+Patterns:
+  - What's your name?
+  - Do you have a name?
+  - Name yourself
+Responses:
+  - My name is GianBOT nice to meet you.
+Context:
+  - 
+
+Tag: basic_info
+Patterns:
+  - What is Gian Marco's full name?
+  - When was Gian Marco born?
+  - Where does Gian Marco live?
+  - Tell me some basic information about Gian Marco
+  - What is Gian Marco's birthdate?
+Responses:
+  - Gian Marco's full name is **Gian Marco Innocenti Castellanos**.
+  - He was born on **January 19, 2002**.
+  - Gian Marco currently lives in **Monterrey, Mexico**.
+  - His full name is **Gian Marco Innocenti Castellanos**, born on **January 19, 2002**, and he resides in **Monterrey, Mexico**.
+Context:
+  - 

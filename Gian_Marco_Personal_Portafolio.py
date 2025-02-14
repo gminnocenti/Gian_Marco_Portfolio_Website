@@ -10,7 +10,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 from multiapp import MultiApp
 from Financial_Statements import FinVista
-
+from Deep_seek_chatbot import deepseek_chatbot
 nltk.download('punkt')
 nltk.download('wordnet')
 
@@ -164,7 +164,9 @@ st.subheader('Select one Project: ')
 app = MultiApp()
 
 # Add all your application here
+app.add_app("GianBot Personal Chatbot", deepseek_chatbot)
 app.add_app("FinVista Application for Financial Analysis using Yahoo Finance API", FinVista)
+
 # The main app
 app.run()
 
