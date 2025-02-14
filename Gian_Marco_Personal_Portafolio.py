@@ -152,7 +152,7 @@ st.title("Welcome to the Digital Portfolio of Gian Marco Innocenti")
 contact_info()
 st.divider()
 Introduction()
-chatbotsidebar()
+#chatbotsidebar()
 
 
 
