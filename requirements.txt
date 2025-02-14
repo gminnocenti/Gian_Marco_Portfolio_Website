@@ -90,3 +90,7 @@ Werkzeug==3.0.1
 wrapt==1.14.1
 yfinance==0.2.31
 zipp==3.17.0
+langchain
+langchain-groq
+python-dotenv
+langchain-community
