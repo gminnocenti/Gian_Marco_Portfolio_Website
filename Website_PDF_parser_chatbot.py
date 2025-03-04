@@ -27,7 +27,7 @@ def initialize_groq_chain(model_name: str = "deepseek-r1-distill-llama-70b") -> 
     load_dotenv()
     
     # Retrieve the API key
-    api_key = os.getenv('key')
+    api_key=st.secrets["KEY"]
     if not api_key:
         raise ValueError("API key not found. Please ensure 'key' is set in your .env file as 'key=your_api_key_here'.")
     
