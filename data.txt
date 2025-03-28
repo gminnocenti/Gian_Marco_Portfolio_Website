@@ -29,6 +29,17 @@ Responses:
 Context:
   - 
 
+Tag: Goat
+Patterns:
+  - Who is the Goat?
+  
+
+Responses:
+  - Red Ram is the goat
+
+Context:
+  - 
+  
 Tag: thanks
 Patterns:
   - Thanks
