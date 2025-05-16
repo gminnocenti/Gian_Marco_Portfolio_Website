@@ -10,7 +10,8 @@ def initialize_chain():
     #load_dotenv()
     api_key=st.secrets["KEY"]
     
-    model = "deepseek-r1-distill-llama-70b"
+    model = "meta-llama/llama-4-scout-17b-16e-instruct"
+
     deepseek = ChatGroq(api_key=api_key, model_name=model)
 
     parser = StrOutputParser()
